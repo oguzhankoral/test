@@ -3,6 +3,7 @@ using Objects.Geometry;
 using Speckle.Automate.Sdk;
 using Speckle.Core.Logging;
 using Speckle.Core.Models.Extensions;
+using Speckle.Newtonsoft.Json;
 
 static class AutomateFunction
 {
@@ -23,6 +24,8 @@ static class AutomateFunction
       .Flatten()
       .Count(b => b.speckle_type == functionInputs.SpeckleTypeToCount);
 
+    Console.WriteLine($"Serialized -> {JsonConvert.SerializeObject(functionInputs.SpeckleTypeToCount)}");
+    Console.WriteLine($"Number of speckle type to count {functionInputs.SpeckleTypeToCount}");
     Console.WriteLine($"Counted {count} objects");
     automationContext.MarkRunSuccess($"Counted {count} objects");
   }
