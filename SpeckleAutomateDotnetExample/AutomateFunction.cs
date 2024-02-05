@@ -24,6 +24,10 @@ static class AutomateFunction
       .Flatten()
       .Count(b => b.speckle_type == functionInputs.SpeckleTypeToCount);
 
+    var objectIds = commitObject.Flatten().Select(o => o.id);
+    
+    automationContext.AttachWarningToObjects("test", objectIds, "this is for test");
+
     Console.WriteLine($"Serialized -> {JsonConvert.SerializeObject(functionInputs.SpeckleTypeToCount)}");
     Console.WriteLine($"Number of speckle type to count {functionInputs.SpeckleTypeToCount}");
     Console.WriteLine($"Counted {count} objects");
